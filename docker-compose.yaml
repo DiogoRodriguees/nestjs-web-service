@@ -5,7 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: trainning-app:1.0
+    container_name: trainning-app
     ports:
       - 3000:3000
     env_file:
       - .env
+    command: ['yarn', 'start:dev']
