@@ -1,5 +1,9 @@
 version: '3.0'
 
+networks:
+  trainning-app-network:
+    driver: bridge
+
 services:
   app:
     build:
@@ -15,3 +19,20 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     command: ['yarn', 'start:dev']
+    depends_on:
+      - database
+    networks:
+      - trainning-app-network
+
+  database:
+    image: postgres:latest
+    container_name: trainning-app-database
+    restart: always
+    ports:
+      - 5433:5432
+    env_file:
+      - .env.postgres
+    volumes:
+      - ./volumes/database/:/var/lib/postgresql/data
+    networks:
+      - trainning-app-network
