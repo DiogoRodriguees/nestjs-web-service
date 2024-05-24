@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User } from 'src/classes/user';
-import { UserEntity } from 'src/entities/user-entity';
+import { UserEntity } from 'src/entities/user.entity';
 import { UserRepository } from 'src/repositories/user.repository';
 
 @Injectable()
@@ -17,8 +17,8 @@ export class UserService {
   }
 
   public async update(user: User) {
-    const userUpdated = await this.userRepo.setNewValues(user);
-    return await this.userRepo.save(userUpdated);
+    const userEntity = await this.userRepo.setNewValues(user);
+    return await this.userRepo.save(userEntity);
   }
 
   public async delete(userID: number) {
