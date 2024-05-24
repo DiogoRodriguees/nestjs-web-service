@@ -29,9 +29,9 @@ services:
     container_name: trainning-app-database
     restart: always
     ports:
-      - 5433:5432
+      - 5432:5432
     env_file:
-      - .env.postgres
+      - .env
     volumes:
       - ./volumes/database/:/var/lib/postgresql/data
     networks:
