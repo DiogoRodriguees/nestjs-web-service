@@ -1,8 +1,10 @@
-version: '3.0'
-
 networks:
   trainning-app-network:
     driver: bridge
+
+volumes:
+  trainning-app-database:
+    driver: local
 
 services:
   app:
@@ -33,6 +35,6 @@ services:
     env_file:
       - .env
     volumes:
-      - ./volumes/database/:/var/lib/postgresql/data
+      - trainning-app-database:/var/lib/postgresql/data
     networks:
       - trainning-app-network
