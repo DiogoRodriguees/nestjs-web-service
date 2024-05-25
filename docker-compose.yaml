@@ -19,7 +19,6 @@ services:
       - .env
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
     command: ['yarn', 'start:dev']
     depends_on:
       - database
