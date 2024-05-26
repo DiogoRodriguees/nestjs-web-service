@@ -1,2 +1,4 @@
 echo "Up application with docker compose ..."
-docker compose up --build
+# @param --build: build project
+# @param --watch: refresh and rebuild project
+sudo docker compose up --build --watch
