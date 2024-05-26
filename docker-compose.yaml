@@ -1,3 +1,5 @@
+version: '3.8'
+
 networks:
   trainning-app-network:
     driver: bridge
@@ -11,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: trainning-app:1.0
+    image: trainning-app:1.5
     container_name: trainning-app
     ports:
       - 3000:3000
