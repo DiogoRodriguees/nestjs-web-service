@@ -31,11 +31,11 @@ export class UserEntity {
     this.password = password;
   }
 
-  static create(user: User) {
+  static create(user: User): UserEntity {
     return new UserEntity(user.name, user.email, user.password);
   }
 
-  public setNewValues(user: User) {
+  public setNewValues(user: User): void {
     this.name = user.name || this.name;
     this.email = user.email || this.email;
     this.password = user.password || this.password;

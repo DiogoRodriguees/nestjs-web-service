@@ -1,10 +1,11 @@
 import { ConfigModule } from '@nestjs/config';
+import { JwtModuleOptions } from '@nestjs/jwt';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { UserEntity } from 'src/entities/user.entity';
 
 ConfigModule.forRoot();
 
-const config: TypeOrmModuleOptions = {
+const database: TypeOrmModuleOptions = {
   type: 'postgres',
   host: process.env.DATABASE_HOST,
   port: Number(process.env.DATABASE_PORT),
@@ -14,4 +15,10 @@ const config: TypeOrmModuleOptions = {
   entities: [UserEntity],
 };
 
-export const Configs = { database: config };
+const jwt: JwtModuleOptions = {
+  global: true,
+  secret: process.env.JWT_SECRET,
+  signOptions: { expiresIn: '1d' },
+};
+
+export const Configs = { database: database, jwt: jwt };
