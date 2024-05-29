@@ -11,7 +11,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: trainning-app:2.0
+    image: trainning-app:1.0
     container_name: trainning-app
     ports:
       - 3000:3000
