@@ -11,7 +11,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@classes/*": ["src/classes/*"],
+      "@classes/*": ["src/common/classes/*"],
       "@entities/*": ["src/entities/*"],
       "@repositories/*": ["src/repositories/*"],
       "@services/*": ["src/services/*"],

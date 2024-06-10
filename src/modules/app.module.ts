@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-import { Configs } from 'src/configs/configs';
+import { Configs } from 'src/common/configs/configs';
 import { AppController } from '../controllers/app.controller';
 import { AuthModule } from './auth.module';
 import { DatabaseModule } from './database.module';

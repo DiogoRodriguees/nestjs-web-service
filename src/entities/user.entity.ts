@@ -1,4 +1,4 @@
-import { User } from 'src/classes/user';
+import { User } from 'src/common/classes/user';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from 'typeorm';
 
 @Entity('users')

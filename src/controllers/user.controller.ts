@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post } from '@nestjs/common';
-import { ResponseDTO } from 'src/classes/response-dto';
-import { User } from 'src/classes/user';
+import { ResponseDTO } from 'src/common/classes/response-dto';
+import { User } from 'src/common/classes/user';
 import { UserEntity } from 'src/entities/user.entity';
 import { UserService } from '../services/user.service';
 

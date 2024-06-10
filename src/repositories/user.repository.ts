@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/classes/user';
+import { User } from 'src/common/classes/user';
 import { UserEntity } from 'src/entities/user.entity';
 import { FindManyOptions, Repository } from 'typeorm';
 
