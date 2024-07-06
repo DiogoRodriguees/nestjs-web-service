@@ -29,6 +29,8 @@
     "@nestjs/swagger": "^7.3.1",
     "@nestjs/typeorm": "^10.0.2",
     "bcrypt": "^5.1.1",
+    "joi": "^17.13.3",
+    "nestjs-joi": "^1.10.0",
     "pg": "^8.11.5",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
