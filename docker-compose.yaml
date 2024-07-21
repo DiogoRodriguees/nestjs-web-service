@@ -1,39 +1,46 @@
 networks:
-  trainning-app-network:
-    driver: bridge
+    trainning-app-network:
+        driver: bridge
 
 volumes:
-  trainning-app-database:
-    driver: local
+    trainning-app-database:
+        driver: local
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: trainning-app:1.0
-    container_name: trainning-app
-    ports:
-      - 3000:3000
-    env_file:
-      - .env
-    volumes:
-      - .:/usr/src/app
-    command: ['yarn', 'start:dev']
-    depends_on:
-      - database
-    networks:
-      - trainning-app-network
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: trainning-app:1.0
+        container_name: trainning-app
+        hostname: trainning-app
+        ports:
+            - 3001:3000
+        env_file:
+            - .env
+        volumes:
+            - .:/usr/src/app
+        command: ["yarn", "start:dev"]
+        depends_on:
+            - database
+        networks:
+            - trainning-app-network
 
-  database:
-    image: postgres:latest
-    container_name: trainning-app-database
-    restart: always
-    ports:
-      - 5432:5432
-    env_file:
-      - .env
-    volumes:
-      - trainning-app-database:/var/lib/postgresql/data
-    networks:
-      - trainning-app-network
+    database:
+        image: postgres:latest
+        container_name: trainning-app-database
+        restart: always
+        ports:
+            - 5432:5432
+        env_file:
+            - ./server/.env
+        volumes:
+            - trainning-app-database:/var/lib/postgresql/data
+        networks:
+            - trainning-app-network
+    nginx:
+        build: ./nginx
+        ports:
+            - "3000:3000"
+        depends_on:
+            - trainning-app
