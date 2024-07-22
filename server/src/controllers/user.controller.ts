@@ -9,8 +9,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  async create(@Body() data: { data: User }): Promise<ResponseDTO<User>> {
-    const userCreated = await this.userService.create(data.data);
+  async create(@Body() user: User): Promise<ResponseDTO<User>> {
+    const userCreated = await this.userService.create(user);
     return new ResponseDTO(HttpStatus.CREATED, 'Success on create user', userCreated);
   }
 
