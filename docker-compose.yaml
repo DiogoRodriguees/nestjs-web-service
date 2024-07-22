@@ -1,46 +1,60 @@
 networks:
-    trainning-app-network:
+    app-trainning-network:
         driver: bridge
 
 volumes:
-    trainning-app-database:
+    app-trainning-database:
         driver: local
 
 services:
     app:
         build:
-            context: .
+            context: ./server
             dockerfile: Dockerfile
-        image: trainning-app:1.0
-        container_name: trainning-app
-        hostname: trainning-app
+        image: app-trainning-server:1.0
+        container_name: app-trainning-server
+        hostname: app-trainning-server
+        restart: always
         ports:
             - 3001:3000
         env_file:
-            - .env
+            - ./server/.env
         volumes:
-            - .:/usr/src/app
+            - ./server:/usr/src/app
         command: ["yarn", "start:dev"]
         depends_on:
             - database
         networks:
-            - trainning-app-network
+            - app-trainning-network
+        deploy:
+            resources:
+                limits:
+                    memory: 300M
 
     database:
         image: postgres:latest
-        container_name: trainning-app-database
+        container_name: app-trainning-database
+        hostname: app-trainning-database
         restart: always
         ports:
-            - 5432:5432
+            - 5433:5432
         env_file:
             - ./server/.env
         volumes:
-            - trainning-app-database:/var/lib/postgresql/data
+            - app-trainning-database:/var/lib/postgresql/data
         networks:
-            - trainning-app-network
+            - app-trainning-network
     nginx:
-        build: ./nginx
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        image: app-trainning-nginx:1.0
+        hostname: app-trainning-nginx
+        container_name: app-trainning-nginx
         ports:
-            - "3000:3000"
+            - 3000:3000
         depends_on:
-            - trainning-app
+            - app
+            - database
+        networks:
+            - app-trainning-network

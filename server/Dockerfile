@@ -1,10 +1,10 @@
-FROM node:21
+FROM node:22.2
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY *package.json .
 
-RUN yarn install
+RUN yarn 
 
 COPY . .
 
