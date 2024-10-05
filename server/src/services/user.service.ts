@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/common/classes/user';
+import { IUserRepository } from 'src/common/interfaces/repositories/IUserRepository';
 import { UserEntity } from 'src/entities/user.entity';
-import { IUserRepository } from 'src/interfaces/repositories/IUserRepository';
 
 @Injectable()
 export class UserService {

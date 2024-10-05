@@ -1,8 +1,8 @@
 import { NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/common/classes/user';
+import { IUserRepository } from 'src/common/interfaces/repositories/IUserRepository';
 import { UserEntity } from 'src/entities/user.entity';
-import { IUserRepository } from 'src/interfaces/repositories/IUserRepository';
 import { FindManyOptions, Repository } from 'typeorm';
 
 export class UserRepository implements IUserRepository {
