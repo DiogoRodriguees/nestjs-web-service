@@ -1,4 +1,6 @@
 import * as Joi from 'joi';
 
-export const EmailSchema = Joi.string()?.email().max(254);
-export const PasswordSchema = Joi.string().max(32);
+export class LoginSchema {
+  static EmailSchema = Joi.string()?.email().max(254);
+  static PasswordSchema = Joi.string().max(32);
+}

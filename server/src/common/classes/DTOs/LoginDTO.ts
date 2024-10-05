@@ -1,13 +1,13 @@
 import { JoiSchema } from 'nestjs-joi';
 import { JoiGroup } from 'src/common/enums/JoiEnums';
-import { EmailSchema, PasswordSchema } from 'src/common/schemas/login.schema';
+import { LoginSchema } from 'src/common/schemas/login.schema';
 
-export class LoginDTO {
-  @JoiSchema(EmailSchema)
-  @JoiSchema([JoiGroup.LOGIN], EmailSchema.required())
+export class Login {
+  @JoiSchema(LoginSchema.EmailSchema)
+  @JoiSchema([JoiGroup.LOGIN], LoginSchema.EmailSchema.required())
   email: string;
 
-  @JoiSchema(PasswordSchema)
-  @JoiSchema([JoiGroup.LOGIN], PasswordSchema.required())
+  @JoiSchema(LoginSchema.PasswordSchema)
+  @JoiSchema([JoiGroup.LOGIN], LoginSchema.PasswordSchema.required())
   password: string;
 }

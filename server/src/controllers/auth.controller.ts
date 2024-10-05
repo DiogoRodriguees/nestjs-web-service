@@ -1,4 +1,4 @@
-import { LoginDTO } from '@classes/DTOs/LoginDTO';
+import { Login } from '@classes/DTOs/LoginDTO';
 import { Body, Controller, HttpStatus, Post, UsePipes } from '@nestjs/common';
 import { Authenticate } from 'src/common/classes/authenticate';
 import { ResponseDTO } from 'src/common/classes/response-dto';
@@ -7,12 +7,12 @@ import { JoiPipeCustom } from 'src/common/pipes/JoiPipe';
 import { AuthService } from 'src/services/auth.service';
 
 @Controller('/auth')
-export class AuthControlelr {
+export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
   @UsePipes(JoiPipeCustom.useGroup(JoiGroupEnum.LOGIN))
-  async signIn(@Body() data: LoginDTO): Promise<ResponseDTO<Authenticate>> {
+  async signIn(@Body() data: Login): Promise<ResponseDTO<Authenticate>> {
     const authentication = await this.authService.signIn(data.email, data.password);
     return new ResponseDTO(HttpStatus.OK, 'Success on sign in', authentication);
   }
